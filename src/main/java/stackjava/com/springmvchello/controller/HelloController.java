@@ -2,7 +2,9 @@ package stackjava.com.springmvchello.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import stackjava.com.springmvchello.entities.Employee;
 
 @Controller
 public class HelloController {
@@ -44,4 +46,21 @@ public class HelloController {
     public String test1() {
         return "test1";
     }
+
+    @RequestMapping(value = { "/SpringFormAdd"}, method = RequestMethod.GET)
+    public String addEmployee(Model model) {
+        model.addAttribute("employee", new Employee());
+        return "add-employee";
+    }
+    @RequestMapping(value = "/addEmployee", method = RequestMethod.POST)
+    public String doAddEmployee(@ModelAttribute("employee") Employee employee, ModelMap modelMap) {
+        employee.setName(employee.getName().toUpperCase());
+        modelMap.addAttribute("employee", employee);
+        return "view-employee";
+    }
+    @RequestMapping(value = "/SpringForm")
+    public String springForm() {
+        return "add-employee";
+    }
+
 }
