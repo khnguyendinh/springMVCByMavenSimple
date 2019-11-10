@@ -13,4 +13,12 @@ public class HelloController {
     public String hello() {
         return "hello";
     }
+    @RequestMapping(value = "/hello2", method = RequestMethod.GET)
+    public String hello2() {
+        return "hello2";
+    }
+    @RequestMapping(value = "/test", method = RequestMethod.POST)
+    public String doPost() {
+        return "test2";
+    }
 }
