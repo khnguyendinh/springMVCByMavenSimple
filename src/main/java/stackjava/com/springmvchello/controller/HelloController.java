@@ -5,6 +5,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
 @Controller
 public class HelloController {
     @RequestMapping("/")
@@ -33,5 +35,11 @@ public class HelloController {
         model.addAttribute("id", id);
         model.addAttribute("name", name);
         return "test2";
+    }
+    @RequestMapping("/test3")
+    public String test3(@RequestParam("name") String name, @RequestParam("id") int id, Model model) {
+        model.addAttribute("id", id);
+        model.addAttribute("name", name);
+        return "test3";
     }
 }
