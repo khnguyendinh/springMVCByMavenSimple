@@ -4,6 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 import stackjava.com.springmvchello.entities.Employee;
 
 import java.util.ArrayList;
@@ -99,6 +101,18 @@ public class HelloController {
     }
     @RequestMapping("/page2")
     public String page2() {
+        return "page2";
+    }
+
+    @RequestMapping("/redirect2")
+    public RedirectView redirect2(@RequestParam("name") String name, RedirectAttributes redirectAttributes) {
+        System.out.println(name);
+        redirectAttributes.addAttribute("name", name);
+        return new RedirectView("page22");
+    }
+    @RequestMapping("/page22")
+    public String page22(@RequestParam("name") String name, Model model) {
+        model.addAttribute("name", name.toUpperCase());
         return "page2";
     }
 
