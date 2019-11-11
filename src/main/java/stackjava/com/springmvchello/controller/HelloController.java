@@ -6,6 +6,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import stackjava.com.springmvchello.entities.Employee;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 public class HelloController {
     @RequestMapping("/")
@@ -61,6 +64,30 @@ public class HelloController {
     @RequestMapping(value = "/SpringForm")
     public String springForm() {
         return "add-employee";
+    }
+    @RequestMapping(value={"/", "/addEmployee2"}, method = RequestMethod.GET)
+    public String addEmployee2(Model model) {
+        model.addAttribute("employee", new Employee());
+        List<String> listFavorite = new ArrayList<String>();
+        listFavorite.add("Swimming");
+        listFavorite.add("Listening music");
+        listFavorite.add("Walking");
+        listFavorite.add("Watching movie");
+        listFavorite.add("Reading comic");
+        model.addAttribute("listFavorite", listFavorite);
+        List<String> listPosition = new ArrayList<String>();
+        listPosition.add("Developer");
+        listPosition.add("Designer");
+        listPosition.add("Tester");
+        listPosition.add("QA");
+        model.addAttribute("listFavorite", listFavorite);
+        model.addAttribute("listPosition", listPosition);
+        return "add-employee2";
+    }
+    @RequestMapping(value = "/addEmployee2", method = RequestMethod.POST)
+    public String doAddEmployee2(@ModelAttribute("employee") Employee employee, ModelMap modelMap) {
+        modelMap.addAttribute("employee", employee);
+        return "view-employee2";
     }
 
 }
