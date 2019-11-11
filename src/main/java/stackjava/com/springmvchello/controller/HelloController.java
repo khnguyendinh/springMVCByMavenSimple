@@ -11,10 +11,10 @@ import java.util.List;
 
 @Controller
 public class HelloController {
-    @RequestMapping("/")
-    public String index() {
-        return "index";
-    }
+//    @RequestMapping("/")
+//    public String index() {
+//        return "index";
+//    }
     @RequestMapping(value = "/hello", method = RequestMethod.GET)
     public String hello() {
         return "hello";
@@ -65,7 +65,7 @@ public class HelloController {
     public String springForm() {
         return "add-employee";
     }
-    @RequestMapping(value={"/", "/addEmployee2"}, method = RequestMethod.GET)
+    @RequestMapping(value={"addEmployee2"}, method = RequestMethod.GET)
     public String addEmployee2(Model model) {
         model.addAttribute("employee", new Employee());
         List<String> listFavorite = new ArrayList<String>();
@@ -88,6 +88,18 @@ public class HelloController {
     public String doAddEmployee2(@ModelAttribute("employee") Employee employee, ModelMap modelMap) {
         modelMap.addAttribute("employee", employee);
         return "view-employee2";
+    }
+    @RequestMapping("/")
+    public String page1() {
+        return "page1";
+    }
+    @RequestMapping("/redirect")
+    public String redirect() {
+        return "redirect:page2";
+    }
+    @RequestMapping("/page2")
+    public String page2() {
+        return "page2";
     }
 
 }
